@@ -1,0 +1,37 @@
+/** 
+ *  This CSS provides all the style settings for
+ *  our JavaFX controls.
+ *
+ *  @author McKilla Gorilla & _____________
+ */
+
+.slide_show_edit_vbox {
+    -fx-background-radius: 5.0;
+    -fx-background-color: rgb(230, 50, 50);
+    -fx-border-color: rgb(50, 5, 5);
+}
+
+.slide_edit_view {
+    -fx-background-radius: 10.0;
+    -fx-background-color: rgb(90, 240, 90);
+    -fx-border-color: rgb(70, 5, 5);
+    -fx-border-thickness: 10px;
+    -fx-spacing: 60px;
+}
+.SEV_selected {
+    -fx-background-radius: 10.0;
+    -fx-background-color: rgb(90, 240, 90);
+    -fx-border-color: rgb(255, 5, 5);
+    -fx-border-thickness: 100px;
+    -fx-spacing: 60px;
+}
+.vertical_toolbar_button {
+    -fx-background-color: rgb(250, 130, 130);
+    -fx-padding: 10px 10px 10px 10px;
+    -fx-spacing: 50px;
+}
+
+.horizontal_toolbar_button {
+    -fx-padding-left: 10px;
+    -fx-padding-right: 20px;
+}

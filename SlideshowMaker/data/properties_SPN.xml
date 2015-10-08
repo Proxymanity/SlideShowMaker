@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    This XML file allows us to easily customize the look and language used
+    in our program's user interface. Note that this is for customizing settings
+    for the Course Schedule Builder interface, NOT the Web page that we're building. 
+-->
+<properties>
+    <property_list>    
+        <property name="TITLE_WINDOW"		value="Slide Show Maker"></property>  
+        
+        <!-- PROGRAM ICON FILES -->
+	
+        <!-- TOOLTIPS FOR BUTTONS -->
+        <property name="TOOLTIP_NEW_SLIDE_SHOW"	    value="Crear una nueva presentación de diapositivas"></property>
+        <property name="TOOLTIP_LOAD_SLIDE_SHOW"    value="Cargar una presentación de diapositivas existente"></property>
+        <property name="TOOLTIP_SAVE_SLIDE_SHOW"    value="Guardar esta presentación de diapositivas"></property>
+        <property name="TOOLTIP_VIEW_SLIDE_SHOW"    value="Ver esta presentación de diapositivas"></property>
+        <property name="TOOLTIP_EXIT"		    value="Salga de la aplicación"></property>
+	<property name="TOOLTIP_ADD_SLIDE"	    value="Añadir diapositiva"></property>
+	<property name="TOOLTIP_REMOVE_SLIDE"	    value="Añadir diapositiva"></property>
+	<property name="TOOLTIP_MOVE_UP"	    value="Mover Deslice hacia arriba"></property>
+	<property name="TOOLTIP_MOVE_DOWN"	    value="Mover Deslice hacia abajo"></property>
+	<property name="TOOLTIP_PREVIOUS_SLIDE"	    value="Diapositiva anterior"></property>
+	<property name="TOOLTIP_NEXT_SLIDE"	    value="Siguiente diapositiva"></property>
+	
+	<!-- DEFAULT VALUES -->
+	<property name="DEFAULT_IMAGE_CAPTION"	    value="Introducir Subtítulo"></property>
+	<property name="DEFAULT_SLIDE_SHOW_TITLE"   value="Introducir El Título"></property>
+	
+	<!-- UI LABELS -->
+	<property name="LABEL_CAPTION"		    value="Subtítulo:"></property>
+	<property name ="LABEL_PROJECT_TITLE"	value="       Título del Proyecto-"></property>
+	
+    <!-- TEXT FIELDS -->
+	<property name="SAVEPROMPT"		    value="¿Quieres Ahorrar?"></property>
+	<property name="NEW_SLIDESHOW"		value="Nueva presentación de diapositivas se ha creado"></property>
+	
+	<!-- BUTTON NAMES -->
+     <property name="YES"		    value="Sí"></property>
+	 <property name="NO"		    value="No"></property>
+	 <property name="SAVE"		    value="Guardar y Continuar"></property>
+	 <property name="NO_SAVE"		value="No Guardar y Continuar"></property>
+	 <property name="CANCEL"		value="Cancelar Acción"></property>
+	 
+
+	 
+	<!-- Error Labels-->
+	<property name="ERROR_PROPERTIES_FILE_LOADING"		    value="Error: Propiedades del archivo Loading"></property>
+	<property name="ERROR_DATA_FILE_LOADING"		    value="Error: Data File Loading"></property>
+	<property name="ERROR_NO_SLIDESHOW_IMAGES"			value="Error: Archivo de datos Cargando"></property>
+	<property name="ERROR_UNEXPECTED"		    value="Error: Inesperado"></property>
+	
+        <!-- GUI LABELS -->
+        <property name="COURSE_HEADING_LABEL"           value="Course Site Details"></property>
+        <property name="COURSE_INFO_LABEL"              value="Course Information"></property>
+        <property name="COURSE_SUBJECT_LABEL"           value="Subject:"></property>
+        <property name="COURSE_NUMBER_LABEL"            value="Number:"></property>
+        <property name="COURSE_SEMESTER_LABEL"          value="Semester:"></property>
+        <property name="COURSE_YEAR_LABEL"              value="Year:"></property>
+        <property name="COURSE_TITLE_LABEL"             value="Title:"></property>
+        <property name="INSTRUCTOR_NAME_LABEL"          value="Instrctor Name:"></property>
+        <property name="INSTRUCTOR_URL_LABEL"           value="Instructor Homepage:"></property>
+        <property name="PAGES_SELECTION_HEADING_LABEL"  value="Site Pages"></property>
+        <property name="SCHEDULE_HEADING_LABEL"         value="Course Schedule"></property>
+        <property name="DATE_BOUNDARIES_LABEL"          value="Semester Dates"></property>
+        <property name="STARTING_MONDAY_LABEL"          value="Starting Monday:"></property>
+        <property name="ENDING_FRIDAY_LABEL"            value="Ending Friday:"></property>
+        <property name="LECTURE_DAY_SELECT_LABEL"       value="Lecture Days"></property>
+    </property_list>
+    <property_options_list>
+    </property_options_list>
+</properties>
