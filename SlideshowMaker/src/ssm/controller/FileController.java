@@ -119,7 +119,7 @@ public class FileController {
            buttonBox.getChildren().addAll(Ok);
            VBox pane = new VBox();
            PropertiesManager props = PropertiesManager.getPropertiesManager();
-           Label text = new Label(props.getProperty(LanguagePropertyType.New_SLIDESHOW));
+           Label text = new Label(props.getProperty(LanguagePropertyType.NEW_SLIDESHOW));
            text.setAlignment(Pos.CENTER);
            pane.getChildren().addAll(text);
            
@@ -238,7 +238,7 @@ public class FileController {
            Stage temp = new Stage();
            Button Save = new Button(props.getProperty(LanguagePropertyType.SAVE));
            Button No = new Button(props.getProperty(LanguagePropertyType.NO_SAVE));
-           Button Cancel = new Button(props.getProperty(LanguagePropertyType.Cancel));;
+           Button Cancel = new Button(props.getProperty(LanguagePropertyType.CANCEL));;
            Save.setOnAction(new EventHandler<ActionEvent>(){
                @Override
                public void handle(ActionEvent e){

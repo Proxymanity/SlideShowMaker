@@ -40,6 +40,7 @@ public class ErrorHandler {
         // POP OPEN A DIALOG TO DISPLAY TO THE USER
         Alert alertDialog = new Alert(AlertType.WARNING, errorFeedbackText);
 	alertDialog.showAndWait();
+         System.exit(0);
     }
      public void processLanguageError(String s)
     {

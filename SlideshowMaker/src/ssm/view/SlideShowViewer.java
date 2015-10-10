@@ -1,7 +1,15 @@
 package ssm.view;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -19,6 +27,8 @@ import static ssm.StartupConstants.DEFAULT_SLIDE_SHOW_HEIGHT;
 import static ssm.StartupConstants.ICON_NEXT;
 import static ssm.StartupConstants.ICON_PREVIOUS;
 import static ssm.StartupConstants.LABEL_SLIDE_SHOW_TITLE;
+import static ssm.StartupConstants.PATH_SITES;
+import ssm.error.ErrorHandler;
 import static ssm.file.SlideShowFileManager.SLASH;
 import ssm.model.Slide;
 import ssm.model.SlideShowModel;
@@ -50,6 +60,10 @@ public class SlideShowViewer extends Stage {
     FlowPane navigationPane;
     Button previousButton;
     Button nextButton;
+    
+    String imageDir;
+    String cssDir;
+    String jsDir;
 
     /**
      * This constructor just initializes the parent and slides references, note
@@ -60,21 +74,93 @@ public class SlideShowViewer extends Stage {
     public SlideShowViewer(SlideShowMakerView initParentView) {
 	// KEEP THIS FOR LATER
 	parentView = initParentView;
-
+        
 	// GET THE SLIDES
 	slides = parentView.getSlideShow();
         SEV = parentView.getSlideShow().getSEVList();
+        
+        //Create the sites directory if not exist
+        File sites = new File(PATH_SITES);
+        if(!sites.exists()){
+            sites.mkdir();
+        }
+        String slideShowTitle = (slides.getTitle());
+        String SlideShowDir = PATH_SITES + slideShowTitle;
+        File SlideShowFolder = new File(SlideShowDir);
+        if(SlideShowFolder.exists()){
+            String[]entries = SlideShowFolder.list();
+            for(String s: entries){
+            File currentFile = new File(SlideShowFolder.getPath(),s);
+            
+            if(currentFile.isDirectory()){
+                String[]MoarEntries = currentFile.list();
+                for(String str: MoarEntries){
+                File MoarCurrentFile = new File(currentFile.getPath(),str);
+                
+                    if(MoarCurrentFile.isDirectory()){
+                        String[]EvenMoarEntries = MoarCurrentFile.list();
+                         for(String string: EvenMoarEntries){
+                             File EvenMoarCurrentFile = new File(MoarCurrentFile.getPath(), string);
+                             EvenMoarCurrentFile.delete();
+                         }
+                    }
+                MoarCurrentFile.delete();
+                }
+            }
+            
+            currentFile.delete();
+            }
+            SlideShowFolder.delete();
+            SlideShowFolder.mkdir();
+        }else{
+            SlideShowFolder.mkdir();
+        }
+        cssDir = new String(SlideShowDir + "/css/");
+        jsDir = new String(SlideShowDir + "/js/");
+        imageDir = new String(SlideShowDir + "/img/");
+        File css = new File(cssDir);
+        File js = new File(jsDir);
+        File images = new File(imageDir);
+        boolean a = false,b = false,c = false;
+            a = css.mkdir();
+            b = js.mkdir();
+            c = images.mkdir();
+            if(!a || !b || !c){
+                ErrorHandler e = parentView.getErrorHandler();
+                e.processError(LanguagePropertyType.ERROR_NOT_CREATED);
+            }
     }
 
     /**
      * This method initializes the UI controls and opens the window with the
      * first slide in the slideshow displayed.
      */
-    public void startSlideShow() {
+    public void startSlideShow(){
 	// FIRST THE TOP PANE
         if(slides.getSelected() == null){
             slides.setSelected(slides.getSEVList().get(0));
         }
+        for(Slide slide: slides.getSlides()){
+            File newImg = new File(imageDir + slide.getImageFileName());
+            try {
+                newImg.createNewFile();
+            } catch (IOException ex) {
+                ErrorHandler e = parentView.getErrorHandler();
+                e.processError(LanguagePropertyType.ERROR_NOT_CREATED);
+            }
+            Path source =  Paths.get("images/slide_show_images/" + slide.getImageFileName());
+            Path dest = Paths.get(imageDir);
+            CopyOption A = StandardCopyOption.REPLACE_EXISTING;
+            try {
+                Path desti = dest.resolve(slide.getImageFileName());
+                Files.copy(source, desti, A);
+            } catch (IOException ex) {
+                ErrorHandler e = parentView.getErrorHandler();
+                e.processError(LanguagePropertyType.ERROR_NOT_CREATED);
+            }
+        }
+        
+        
 	topPane = new FlowPane();
 	topPane.setAlignment(Pos.CENTER);
 	slideShowTitleLabel = new Label(slides.getTitle());

@@ -1,1 +1,8 @@
-{"title":"Blank","slides":[{"image_file_name":"CapeSpearNewfoundland.jpg","image_path":"C:\\Users\\Cokers\\Documents\\NetBeansProjects\\CSE219\\HW2\\SlideshowMaker\\images\\slide_show_images\\"},{"image_file_name":"OregonTrailNebraska.jpg","image_path":"C:\\Users\\Cokers\\Documents\\NetBeansProjects\\CSE219\\HW2\\SlideshowMaker\\images\\slide_show_images\\"},{"image_file_name":"CapeSpearNewfoundland.jpg","image_path":"C:\\Users\\Cokers\\Documents\\NetBeansProjects\\CSE219\\HW2\\SlideshowMaker\\images\\slide_show_images\\"}],"SlideEditView":[{"CAPTION":"A"},{"CAPTION":"B"},{"CAPTION":"C"}]}
+{"title":"Blank",
+    "slides":[
+        {"image_file_name":"CapeSpearNewfoundland.jpg","image_path":"C:\\Users\\Cokers\\Documents\\NetBeansProjects\\CSE219\\HW2\\SlideshowMaker\\images\\slide_show_images\\"},
+        {"image_file_name":"OregonTrailNebraska.jpg","image_path":"C:\\Users\\Cokers\\Documents\\NetBeansProjects\\CSE219\\HW2\\SlideshowMaker\\images\\slide_show_images\\"},
+        {"image_file_name":"BryceCanyonUtah.jpg","image_path":"C:\\Users\\Cokers\\Documents\\NetBeansProjects\\CSE219\\HW3\\SlideshowMaker\\images\\slide_show_images\\"}
+        ],
+    
+    "SlideEditView":[{"CAPTION":"A"},{"CAPTION":"B"},{"CAPTION":"C"}]}

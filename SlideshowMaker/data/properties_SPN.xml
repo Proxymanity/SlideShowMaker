@@ -49,7 +49,7 @@
 	<property name="ERROR_DATA_FILE_LOADING"		    value="Error: Data File Loading"></property>
 	<property name="ERROR_NO_SLIDESHOW_IMAGES"			value="Error: Archivo de datos Cargando"></property>
 	<property name="ERROR_UNEXPECTED"		    value="Error: Inesperado"></property>
-	
+		<property name="ERROR_NOT_CREATED"			value="Error: Uno o más de los archivos no pudo ser creado"></property>
         <!-- GUI LABELS -->
         <property name="COURSE_HEADING_LABEL"           value="Course Site Details"></property>
         <property name="COURSE_INFO_LABEL"              value="Course Information"></property>

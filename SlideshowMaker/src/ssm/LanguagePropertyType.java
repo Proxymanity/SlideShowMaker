@@ -39,15 +39,18 @@ public enum LanguagePropertyType {
     ERROR_PROPERTIES_FILE_LOADING,
     ERROR_NO_SLIDESHOW_IMAGES,
     ERROR_UNEXPECTED,
+    ERROR_NOT_CREATED,
     
     /*Prompts */
     SAVEPROMPT,
-    New_SLIDESHOW,
+    NEW_SLIDESHOW,
     
     /*Button Names*/
     Yes,
     No,
     SAVE,
     NO_SAVE,
-    Cancel
+    CANCEL,
+    
+    /* Language prompt */
 }

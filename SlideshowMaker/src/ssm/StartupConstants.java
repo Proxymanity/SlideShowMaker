@@ -10,7 +10,7 @@ public class StartupConstants {
 
     // WE'LL LOAD ALL THE UI AND LANGUAGE PROPERTIES FROM FILES,
     // BUT WE'LL NEED THESE VALUES TO START THE PROCESS
-
+    
     public static String PROPERTY_TYPES_LIST = "property_types.txt";
     public static String English = "properties_EN.xml";
     public static String Spanish = "properties_SPN.xml";
@@ -22,6 +22,7 @@ public class StartupConstants {
     public static String PATH_SLIDE_SHOW_IMAGES = PATH_IMAGES + "slide_show_images/";
     public static String PATH_CSS = "ssm/style/";
     public static String STYLE_SHEET_UI = PATH_CSS + "SlideShowMakerStyle.css";
+    public static String PATH_SITES = "./sites/";
 
     // HERE ARE THE LANGUAGE INDEPENDENT GUI ICONS
     public static String ICON_NEW_SLIDE_SHOW = "New.png";
@@ -42,11 +43,17 @@ public class StartupConstants {
     public static int	    DEFAULT_SLIDE_SHOW_HEIGHT = 500;
     
     // CSS STYLE SHEET CLASSES
+    public static String    MAIN = "Main";
+    public static String    CSS_TEXT = "TextField";
+    public static String    CSS_TITLE = "TitleField";
+    public static String    CSS_CLASS_SLIDE_SHOW_EDIT_HBOX = "slide_show_edit_hbox";
     public static String    CSS_CLASS_VERTICAL_TOOLBAR_BUTTON = "vertical_toolbar_button";
     public static String    CSS_CLASS_HORIZONTAL_TOOLBAR_BUTTON = "horizontal_toolbar_button";
     public static String    CSS_CLASS_SLIDE_SHOW_EDIT_VBOX = "slide_show_edit_vbox";
     public static String    CSS_CLASS_SLIDE_EDIT_VIEW = "slide_edit_view";
     public static String     Selected_SEV ="SEV_selected";
+    public static String    bBox = "bBox";
+    public static String    Lbox = "Lbox";
     
     // UI LABELS
     public static String    LABEL_SLIDE_SHOW_TITLE = "slide_show_title";

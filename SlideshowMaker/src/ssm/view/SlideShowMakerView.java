@@ -31,6 +31,8 @@ import static ssm.LanguagePropertyType.TOOLTIP_NEW_SLIDE_SHOW;
 import static ssm.LanguagePropertyType.TOOLTIP_SAVE_SLIDE_SHOW;
 import static ssm.LanguagePropertyType.TOOLTIP_VIEW_SLIDE_SHOW;
 import static ssm.LanguagePropertyType.LABEL_PROJECT_TITLE;
+import static ssm.StartupConstants.CSS_TITLE;
+import static ssm.StartupConstants.CSS_CLASS_SLIDE_SHOW_EDIT_HBOX;
 import static ssm.LanguagePropertyType.TOOLTIP_MOVE_DOWN;
 import static ssm.LanguagePropertyType.TOOLTIP_MOVE_UP;
 import static ssm.LanguagePropertyType.TOOLTIP_REMOVE_SLIDE;
@@ -46,6 +48,7 @@ import static ssm.StartupConstants.ICON_NEW_SLIDE_SHOW;
 import static ssm.StartupConstants.ICON_REMOVE_SLIDE;
 import static ssm.StartupConstants.ICON_SAVE_SLIDE_SHOW;
 import static ssm.StartupConstants.ICON_VIEW_SLIDE_SHOW;
+import static ssm.StartupConstants.MAIN;
 import static ssm.StartupConstants.PATH_ICONS;
 import static ssm.StartupConstants.STYLE_SHEET_UI;
 import ssm.controller.FileController;
@@ -180,6 +183,7 @@ public class SlideShowMakerView {
     private void initWorkspace() {
 	// FIRST THE WORKSPACE ITSELF, WHICH WILL CONTAIN TWO REGIONS
 	workspace = new HBox();
+        workspace.getStyleClass().add(MAIN);
 	
 	// THIS WILL GO IN THE LEFT SIDE OF THE SCREEN
 	slideEditToolbar = new VBox();
@@ -190,8 +194,10 @@ public class SlideShowMakerView {
         remove = this.initChildButton(slideEditToolbar,                 ICON_REMOVE_SLIDE,     TOOLTIP_REMOVE_SLIDE,      CSS_CLASS_VERTICAL_TOOLBAR_BUTTON,  false);
 	// AND THIS WILL GO IN THE CENTER
 	slidesEditorPane = new VBox();
+        slidesEditorPane.getStyleClass().add(MAIN);
 	slidesEditorScrollPane = new ScrollPane(slidesEditorPane);
-	
+        slidesEditorScrollPane.getStyleClass().clear();
+        slidesEditorScrollPane.getStyleClass().add(MAIN);
 	// NOW PUT THESE TWO IN THE WORKSPACE
 	workspace.getChildren().add(slideEditToolbar);
 	workspace.getChildren().add(slidesEditorScrollPane);
@@ -268,7 +274,10 @@ public class SlideShowMakerView {
 	viewSlideShowButton = initChildButton(fileToolbarPane, ICON_VIEW_SLIDE_SHOW,	TOOLTIP_VIEW_SLIDE_SHOW,    CSS_CLASS_HORIZONTAL_TOOLBAR_BUTTON, true);
 	exitButton = initChildButton(fileToolbarPane, ICON_EXIT, TOOLTIP_EXIT, CSS_CLASS_HORIZONTAL_TOOLBAR_BUTTON, false);
         Label textLabel = new Label(props.getProperty(LanguagePropertyType.LABEL_PROJECT_TITLE));
+        textLabel.getStyleClass().add(CSS_TITLE);
+        Title.getStyleClass().add(CSS_TITLE);
         fileToolbarPane.getChildren().addAll(textLabel,Title);
+        fileToolbarPane.getStyleClass().add(CSS_CLASS_SLIDE_SHOW_EDIT_HBOX);
     }
 
     private void initWindow(String windowTitle) {

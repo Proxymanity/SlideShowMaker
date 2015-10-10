@@ -18,8 +18,11 @@ import properties_manager.PropertiesManager;
 import static ssm.LanguagePropertyType.TITLE_WINDOW;
 import static ssm.StartupConstants.PATH_DATA;
 import static ssm.StartupConstants.PROPERTIES_SCHEMA_FILE_NAME;
+import static ssm.StartupConstants.MAIN;
 import static ssm.StartupConstants.English;
+import static ssm.StartupConstants.Lbox;
 import static ssm.StartupConstants.Spanish;
+import static ssm.StartupConstants.bBox;
 import ssm.error.ErrorHandler;
 import ssm.file.SlideShowFileManager;
 import ssm.view.SlideShowMakerView;
@@ -68,12 +71,15 @@ public class SlideShowMaker extends Application {
         
         HBox buttonBox = new HBox();
         buttonBox.getChildren().addAll(Accept);
+       
         Pane pane = new Pane();
-        pane.getChildren().add(new Label("Choose a language"));
-        
+        Label lang = new Label("Choose a Language");
+        lang.getStyleClass().add(Lbox);
+        pane.getChildren().add(lang);
         BorderPane mainPane = new BorderPane();
-        mainPane.setTop(comboBox);
-        mainPane.setCenter(buttonBox);
+        mainPane.setTop(pane);
+        mainPane.setLeft(comboBox);
+        mainPane.setBottom(buttonBox);
         Scene scene = new Scene(mainPane, 250, 100);
         temp.setTitle("Language Selector");
         temp.setScene(scene);

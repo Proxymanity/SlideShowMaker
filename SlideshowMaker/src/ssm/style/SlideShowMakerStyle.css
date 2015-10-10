@@ -7,31 +7,62 @@
 
 .slide_show_edit_vbox {
     -fx-background-radius: 5.0;
-    -fx-background-color: rgb(230, 50, 50);
+    -fx-background-color: rgb(255, 255, 150);
     -fx-border-color: rgb(50, 5, 5);
+    -fx-alignment: center;
+    -fx-spacing: 100;
 }
-
+.slide_show_edit_hbox{
+    -fx-background-color: rgb(255, 255, 150);
+    -fx-border-color: rgb(50, 5, 5);
+    -fx-hgap: 20;
+}
 .slide_edit_view {
     -fx-background-radius: 10.0;
-    -fx-background-color: rgb(90, 240, 90);
+    -fx-background-color: rgb(227, 227, 0);
     -fx-border-color: rgb(70, 5, 5);
     -fx-border-thickness: 10px;
     -fx-spacing: 60px;
 }
 .SEV_selected {
     -fx-background-radius: 10.0;
-    -fx-background-color: rgb(90, 240, 90);
-    -fx-border-color: rgb(255, 5, 5);
-    -fx-border-thickness: 100px;
+    -fx-background-color: rgb(255, 255, 0);
+    -fx-border-color: rgb(255, 0, 0);
+    -fx-border-width: 1;
     -fx-spacing: 60px;
 }
 .vertical_toolbar_button {
-    -fx-background-color: rgb(250, 130, 130);
-    -fx-padding: 10px 10px 10px 10px;
-    -fx-spacing: 50px;
+    -fx-background-color: rgb(255, 255, 70);
+    -fx-border-color: rgb(0,0,0);
+    -fx-spacing: 10px;
 }
 
 .horizontal_toolbar_button {
     -fx-padding-left: 10px;
     -fx-padding-right: 20px;
+    -fx-background-color: rgb(255, 255, 70);
+    -fx-border-color: rgb(0,0,0);
+    -fx-spacing: 10px;
+}
+
+.TextField{
+    -fx-font-family: sans-serif;
+    -fx-font-size: 16px;
+}
+.TitleField{
+    -fx-font-family: sans-serif;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+.Main{
+  -fx-background-color: rgb(255, 255, 60);
+}
+
+.bBox{
+      -fx-background-color: rgb(255, 255, 60);
+      -fx-alignment: CENTER;
+}
+.Lbox{
+      -fx-background-color: rgb(255, 255, 60);
+      -fx-alignment:CENTER;
 }

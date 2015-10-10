@@ -14,6 +14,7 @@ import ssm.LanguagePropertyType;
 import static ssm.StartupConstants.CSS_CLASS_SLIDE_EDIT_VIEW;
 import static ssm.StartupConstants.Selected_SEV;
 import static ssm.StartupConstants.DEFAULT_THUMBNAIL_WIDTH;
+import static ssm.StartupConstants.CSS_TEXT;
 import ssm.controller.ImageSelectionController;
 import ssm.model.Slide;
 import static ssm.file.SlideShowFileManager.SLASH;
@@ -41,8 +42,7 @@ public class SlideEditView extends HBox {
     // CONTROLS FOR EDITING THE CAPTION
     VBox captionVBox;
     Label captionLabel;
-    TextField captionTextField = new TextField();
-    
+    TextField captionTextField = new TextField();   
     // PROVIDES RESPONSES FOR IMAGE SELECTION
     ImageSelectionController imageController;
     
@@ -74,7 +74,9 @@ public class SlideEditView extends HBox {
 	PropertiesManager props = PropertiesManager.getPropertiesManager();
 	captionLabel = new Label(props.getProperty(LanguagePropertyType.LABEL_CAPTION));
 	captionTextField = new TextField(TEXT);
+        captionTextField.getStyleClass().add(CSS_TEXT);
 	captionVBox.getChildren().add(captionLabel);
+        captionLabel.getStyleClass().add(CSS_TEXT);
 	captionVBox.getChildren().add(captionTextField);
 	// LAY EVERYTHING OUT INSIDE THIS COMPONENT
 	getChildren().add(imageSelectionView);

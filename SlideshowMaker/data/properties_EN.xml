@@ -49,6 +49,7 @@
 	<property name="ERROR_DATA_FILE_LOADING"		    value="Error: Data File Loading"></property>
 	<property name="ERROR_NO_SLIDESHOW_IMAGES"			value="Error: No SlideShow Images"></property>
 	<property name="ERROR_UNEXPECTED"		    value="Error: Unexpected"></property>
+	<property name="ERROR_NOT_CREATED"			value="Error: One or more of the files was unable to be created"></property>
 	
         <!-- GUI LABELS -->
         <property name="COURSE_HEADING_LABEL"           value="Course Site Details"></property>
