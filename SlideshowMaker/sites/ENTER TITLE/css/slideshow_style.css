@@ -26,7 +26,7 @@ button {
  // background-repeat: no-repeat;
  // background-position: 50% 50%;
  //background: 
-  /* put the height and width of your image here */
+ 
   height: 50px;
   width: 50px;
  // border: none;
@@ -40,7 +40,7 @@ button {
 .Caption{
     text-align: center;
     font-family: serif;
-    font-size: 30px;
+    font-size: 40px;
     background-color: rgb(100,100,255);
    // max-width: 700px;
     height: 80px;

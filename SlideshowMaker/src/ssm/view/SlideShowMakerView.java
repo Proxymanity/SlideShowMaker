@@ -230,6 +230,7 @@ public class SlideShowMakerView {
         for(SlideEditView sev : temp){
             sev.setText();
         }
+        fileController.handleSaveSlideShowRequest();
         SlideShowViewer viewer = new SlideShowViewer(this);
         viewer.startSlideShow();
     });

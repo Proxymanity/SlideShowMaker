@@ -92,7 +92,7 @@ public class SlideShowViewer extends Stage {
         File sites = new File(PATH_SITES);
         if(!sites.exists()){
             sites.mkdir();
-        }
+       }
         slideShowTitle = (slides.getTitle());
         SlideShowDir = PATH_SITES + slideShowTitle;
         File SlideShowFolder = new File(SlideShowDir);
@@ -284,7 +284,7 @@ public class SlideShowViewer extends Stage {
         }
         //HTML file
         if(b){
-           File index = new File("index.html");
+           File index = new File(SlideShowDir + "/index.html");
             try {
                 index.createNewFile();
             } catch (IOException ex) {
@@ -319,7 +319,7 @@ public class SlideShowViewer extends Stage {
         
         
         
-        String siteHTML = ("file:" + SlideShowDir +"index.html");
+        String siteHTML = ("file:/sites/" + slideShowTitle +"/index.html");
         Stage webViewerStage = new Stage();
         WebViewer webBrowser = new WebViewer(webViewerStage, siteHTML);
         webViewerStage.show();
