@@ -43,8 +43,8 @@ and open the template in the editor.
             window.onload=(function(event){
                $.getJSON('./json/Blank.json', function(jd) {
                   $('#Title').html(jd.title);
-                   slides = jd.slides
-                   Captions = jd.SlideEditView
+                   slides = jd.slides;
+                   Captions = jd.SlideEditView;
                   if(slides[i].image_file_name == null){
                       i = 0;
                   }
@@ -55,37 +55,24 @@ and open the template in the editor.
          });
  function Next(){
      i++;
-     $(document).ready(function() {
-               $.getJSON('./json/Blank.json', function(jd) {
-                  $('#Title').html(jd.title);
-                   slides = jd.slides
-                   Captions = jd.SlideEditView;
                   if(slides.length == i){
                       i = 0;
                   }
-                //  if(if Captions[i] === null){
-               //       i = 0;    //Display First slide
-               //   }
+               
                 $('#Picture').attr("src", "img/"+slides[i].image_file_name);
                  $('#Caption').html(Captions[i].CAPTION);
-               });
-            });
+              
  }
  
   function Prev(){
      i--;
-     $(document).ready(function() {
-               $.getJSON('./json/Blank.json', function(jd) {
-                  $('#Title').html(jd.title);
-                   slides = jd.slides
-                   Captions = jd.SlideEditView;
                   if(i < 0){
                       i = (slides.length -1);
                   }
                 $('#Picture').attr("src", "img/"+slides[i].image_file_name);
                  $('#Caption').html(Captions[i].CAPTION);
-               });
-            });
+               
+           
  }
  function play(){
      $('#Play').attr("src", "img/icons/Pause.png");
