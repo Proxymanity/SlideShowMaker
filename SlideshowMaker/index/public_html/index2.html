@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+             <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>	   
+        <link rel="stylesheet" type="text/css" href="css/slideshow_style.css">
+         <title>SlideShowViewer</title>	
+   </head>
+	
+   <body>
+        <h1 id = "Title">Title</h1>
+     <p> 
+         <img class ="PIC" id = "Picture" src =""/>
+        
+        </p>
+        
+        <p class ="Caption" id = "Caption">Caption</p>
+        
+        <p>
+            <button type="button" onclick="Prev()">
+                <img src="./img/icons/Previous.png">
+            </button>
+            <button type="button" onclick="play()" value = "Play" id = "PlayButton">
+                <img id = "Play" src="./img/icons/Play.png">
+              
+            </button>
+            <button type="button" onclick="Next()">
+                <img src="./img/icons/Next.png">
+            </button>
+        </p>
+
+<script type="text/javascript">
+    var i = 0;
+    var slides;
+    var Captions;
+    var image;
+    var x = 0;
+         $(document).ready(function() {
+            window.onload=(function(event){
+               $.getJSON('./json/Blank.json', function(jd) {
+                  $('#Title').html(jd.title);
+                   slides = jd.slides;
+                   Captions = jd.SlideEditView;
+                  if(slides[i].image_file_name == null){
+                      i = 0;
+                  }
+                $('#Picture').attr("src", "img/"+slides[i].image_file_name);
+                 $('#Caption').html(Captions[i].CAPTION);
+               });
+            });
+         });
+ function Next(){
+     i++;
+                  if(slides.length == i){
+                      i = 0;
+                  }
+               
+                $('#Picture').attr("src", "img/"+slides[i].image_file_name);
+                 $('#Caption').html(Captions[i].CAPTION);
+              
+ }
+ 
+  function Prev(){
+     i--;
+                  if(i < 0){
+                      i = (slides.length -1);
+                  }
+                $('#Picture').attr("src", "img/"+slides[i].image_file_name);
+                 $('#Caption').html(Captions[i].CAPTION);
+               
+           
+ }
+ function play(){
+     $('#Play').attr("src", "img/icons/Pause.png");
+     $('#PlayButton').attr("onclick", "Pause()");
+     x = 0;
+      myLoop();
+   
+    // while(x == 0){
+      //   setTimeout(Next(), 3000);
+   //  }
+     
+ }   
+ 
+ function myLoop () {           
+   setTimeout(function () {    
+      if (x == 0) {            
+        Next();          
+        myLoop();              
+      }                       
+   }, 3000)
+}
+    
+ function Pause(){
+     x = 1;
+        $('#Play').attr("src", "img/icons/Play.png");
+         $('#PlayButton').attr("onclick", "play()");
+ }
+  </script>
+    </body>
+</html>
+

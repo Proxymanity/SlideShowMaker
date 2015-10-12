@@ -1,7 +1,10 @@
 package ssm.view;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.CopyOption;
 import java.nio.file.Files;
@@ -19,7 +22,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import ssm.LanguagePropertyType;
 import static ssm.StartupConstants.CSS_CLASS_HORIZONTAL_TOOLBAR_BUTTON;
@@ -64,7 +70,10 @@ public class SlideShowViewer extends Stage {
     String imageDir;
     String cssDir;
     String jsDir;
-
+    String jSonDir;
+    String slideShowTitle;
+    String SlideShowDir;
+    String iconDir;
     /**
      * This constructor just initializes the parent and slides references, note
      * that it does not arrange the UI or start the slide show view window.
@@ -84,8 +93,8 @@ public class SlideShowViewer extends Stage {
         if(!sites.exists()){
             sites.mkdir();
         }
-        String slideShowTitle = (slides.getTitle());
-        String SlideShowDir = PATH_SITES + slideShowTitle;
+        slideShowTitle = (slides.getTitle());
+        SlideShowDir = PATH_SITES + slideShowTitle;
         File SlideShowFolder = new File(SlideShowDir);
         if(SlideShowFolder.exists()){
             String[]entries = SlideShowFolder.list();
@@ -118,16 +127,22 @@ public class SlideShowViewer extends Stage {
         cssDir = new String(SlideShowDir + "/css/");
         jsDir = new String(SlideShowDir + "/js/");
         imageDir = new String(SlideShowDir + "/img/");
+        iconDir = new String(imageDir + "icons/");
+        jSonDir = new String(SlideShowDir + "/jSon/");
         File css = new File(cssDir);
         File js = new File(jsDir);
         File images = new File(imageDir);
-        boolean a = false,b = false,c = false;
+        File icon = new File(iconDir);
+        File jSon = new File(jSonDir);
+        boolean a = false,b = false,c = false, d= false, e = false;
             a = css.mkdir();
             b = js.mkdir();
             c = images.mkdir();
-            if(!a || !b || !c){
-                ErrorHandler e = parentView.getErrorHandler();
-                e.processError(LanguagePropertyType.ERROR_NOT_CREATED);
+            d = jSon.mkdir();
+            e = icon.mkdir();
+            if(!a || !b || !c || !d || !e){
+                ErrorHandler er = parentView.getErrorHandler();
+                er.processError(LanguagePropertyType.ERROR_NOT_CREATED);
             }
     }
 
@@ -136,10 +151,13 @@ public class SlideShowViewer extends Stage {
      * first slide in the slideshow displayed.
      */
     public void startSlideShow(){
-	// FIRST THE TOP PANE
+	
+        boolean b = true;
+        
         if(slides.getSelected() == null){
             slides.setSelected(slides.getSEVList().get(0));
         }
+        // Now copy over the images
         for(Slide slide: slides.getSlides()){
             File newImg = new File(imageDir + slide.getImageFileName());
             try {
@@ -152,95 +170,163 @@ public class SlideShowViewer extends Stage {
             Path dest = Paths.get(imageDir);
             CopyOption A = StandardCopyOption.REPLACE_EXISTING;
             try {
-                Path desti = dest.resolve(slide.getImageFileName());
-                Files.copy(source, desti, A);
+                Path destination = dest.resolve(slide.getImageFileName());
+                Files.copy(source, destination, A);
             } catch (IOException ex) {
                 ErrorHandler e = parentView.getErrorHandler();
                 e.processError(LanguagePropertyType.ERROR_NOT_CREATED);
             }
         }
+        //Now copy the ICONS over
+        String Next = ("Next.png");
+        String Pause =("Pause.png");
+        String Play = ("Play.png");
+        String Previous =("Previous.png");
+        String[] icons = {Next,Pause,Play,Previous};
+        for(String icon: icons){
+            File newIcon = new File(iconDir + icon);
+            try {
+                newIcon.createNewFile();
+            } catch (IOException ex) {
+                ErrorHandler e = parentView.getErrorHandler();
+                e.processError(LanguagePropertyType.ERROR_NOT_CREATED);
+            }
+            Path source =  Paths.get("baseFiles/img/icons/" + icon);
+            Path dest = Paths.get(iconDir);
+            CopyOption A = StandardCopyOption.REPLACE_EXISTING;
+            try {
+                Path destination = dest.resolve(icon);
+                Files.copy(source, destination, A);
+            } catch (IOException ex) {
+                ErrorHandler e = parentView.getErrorHandler();
+                e.processError(LanguagePropertyType.ERROR_NOT_CREATED);
+            }
+        }
+        //Now copy over the JSON object
+        if(b){
+        File JSON = new File(jSonDir + slideShowTitle + ".json");
+            try {
+                JSON.createNewFile();
+            } catch (IOException ex) {
+                ErrorHandler e = parentView.getErrorHandler();
+                e.processError(LanguagePropertyType.ERROR_NOT_CREATED);
+            }
+            Path source =  Paths.get("data/slide_shows/" + slideShowTitle + ".json");
+            Path dest = Paths.get(jSonDir);
+            CopyOption A = StandardCopyOption.REPLACE_EXISTING;
+            try {
+                Path destination = dest.resolve(slideShowTitle + ".json");
+                Files.copy(source, destination, A);
+            } catch (IOException ex) {
+                ErrorHandler e = parentView.getErrorHandler();
+                e.processError(LanguagePropertyType.ERROR_NOT_CREATED);
+            }
+         }
+         // Now copy over the SlideShow.js
+        if(b){
+           File JS = new File(jsDir + "Slideshow.js");
+            try {
+                JS.createNewFile();
+            } catch (IOException ex) {
+                ErrorHandler e = parentView.getErrorHandler();
+                e.processError(LanguagePropertyType.ERROR_NOT_CREATED);
+            }
+            Path source =  Paths.get("baseFiles/js/Slideshow.js");
+            Path dest = Paths.get(jsDir);
+            CopyOption A = StandardCopyOption.REPLACE_EXISTING;
+            try {
+                Path destination = dest.resolve("Slideshow.js");
+                Files.copy(source, destination, A);
+            } catch (IOException ex) {
+                ErrorHandler e = parentView.getErrorHandler();
+                e.processError(LanguagePropertyType.ERROR_NOT_CREATED);
+            } 
+        }
+        //JQuery file
+        if(b){
+           File JQ = new File(jsDir + "jquery-2.1.4.min.js");
+            try {
+                JQ.createNewFile();
+            } catch (IOException ex) {
+                ErrorHandler e = parentView.getErrorHandler();
+                e.processError(LanguagePropertyType.ERROR_NOT_CREATED);
+            }
+            Path source =  Paths.get("baseFiles/js/jquery-2.1.4.min.js");
+            Path dest = Paths.get(jsDir);
+            CopyOption A = StandardCopyOption.REPLACE_EXISTING;
+            try {
+                Path destination = dest.resolve("jquery-2.1.4.min.js");
+                Files.copy(source, destination, A);
+            } catch (IOException ex) {
+                ErrorHandler e = parentView.getErrorHandler();
+                e.processError(LanguagePropertyType.ERROR_NOT_CREATED);
+            } 
+        }
+        //CSS file
+        if(b){
+           File CSS = new File(cssDir + "slideshow_style.css");
+            try {
+                CSS.createNewFile();
+            } catch (IOException ex) {
+                ErrorHandler e = parentView.getErrorHandler();
+                e.processError(LanguagePropertyType.ERROR_NOT_CREATED);
+            }
+            Path source =  Paths.get("baseFiles/css/slideshow_style.css");
+            Path dest = Paths.get(cssDir);
+            CopyOption A = StandardCopyOption.REPLACE_EXISTING;
+            try {
+                Path destination = dest.resolve("slideshow_style.css");
+                Files.copy(source, destination, A);
+            } catch (IOException ex) {
+                ErrorHandler e = parentView.getErrorHandler();
+                e.processError(LanguagePropertyType.ERROR_NOT_CREATED);
+            } 
+        }
+        //HTML file
+        if(b){
+           File index = new File("index.html");
+            try {
+                index.createNewFile();
+            } catch (IOException ex) {
+                ErrorHandler e = parentView.getErrorHandler();
+                e.processError(LanguagePropertyType.ERROR_NOT_CREATED);
+            }
+            Path source =  Paths.get("baseFiles/index.html");
+            Path dest = Paths.get(SlideShowDir);
+            CopyOption A = StandardCopyOption.REPLACE_EXISTING;
+            try {
+                Path destination = dest.resolve("index.html");
+                Files.copy(source, destination, A);
+            } catch (IOException ex) {
+                ErrorHandler e = parentView.getErrorHandler();
+                e.processError(LanguagePropertyType.ERROR_NOT_CREATED);
+            } 
+        }
+  
+        // Writes the JSON file name to a javaScript file
+            FileWriter fWriter = null;
+            BufferedWriter writer = null;
+        try {
+           fWriter = new FileWriter(SlideShowDir +"/js/jsonName.js");
+           writer = new BufferedWriter(fWriter);
+           writer.write("var Name = '"+ slideShowTitle +".json';");
+           writer.newLine(); 
+           writer.close(); 
+        } catch (IOException ex) {
+            ErrorHandler e = parentView.getErrorHandler();
+                e.processError(LanguagePropertyType.ERROR_NOT_CREATED);
+        }   
         
         
-	topPane = new FlowPane();
-	topPane.setAlignment(Pos.CENTER);
-	slideShowTitleLabel = new Label(slides.getTitle());
-	slideShowTitleLabel.getStyleClass().add(LABEL_SLIDE_SHOW_TITLE);
-	topPane.getChildren().add(slideShowTitleLabel);
-
-	// THEN THE CENTER, START WITH THE FIRST IMAGE
-	slideShowImageView = new ImageView();
-	reloadSlideShowImageView();
-
-	// THEN THE BOTTOM PANE
-	bottomPane = new VBox();
-	bottomPane.setAlignment(Pos.CENTER);
-	captionLabel = new Label();
-	if (slides.getSlides().size() > 0) {
-	    captionLabel.setText(slides.getSelected().getText());
-	}
-	navigationPane = new FlowPane();
-	bottomPane.getChildren().add(captionLabel);
-	bottomPane.getChildren().add(navigationPane);
-
-	// NOW SETUP THE CONTENTS OF THE NAVIGATION PANE
-	navigationPane.setAlignment(Pos.CENTER);
-	previousButton = parentView.initChildButton(navigationPane, ICON_PREVIOUS, LanguagePropertyType.TOOLTIP_PREVIOUS_SLIDE, CSS_CLASS_HORIZONTAL_TOOLBAR_BUTTON, false);
-	nextButton = parentView.initChildButton(navigationPane, ICON_NEXT, LanguagePropertyType.TOOLTIP_NEXT_SLIDE, CSS_CLASS_HORIZONTAL_TOOLBAR_BUTTON, false);
-
-	// NOW ARRANGE ALL OUR REGIONS
-	borderPane = new BorderPane();
-	borderPane.setTop(topPane);
-	borderPane.setCenter(slideShowImageView);
-	borderPane.setBottom(bottomPane);
-
-	// NOW SETUP THE BUTTON HANDLERS
-	previousButton.setOnAction(e -> {
-	    slides.prev();
-	    reloadSlideShowImageView();
-	    reloadCaption();
-	});
-	nextButton.setOnAction(e -> {
-	    slides.next();
-	    reloadSlideShowImageView();
-	    reloadCaption();
-	});
-
-	// NOW PUT STUFF IN THE STAGE'S SCENE
-	Scene scene = new Scene(borderPane, 1000, 700);
-	setScene(scene);
-	this.showAndWait();
-    }
-
-    // HELPER METHOD
-    private void reloadSlideShowImageView() {
-	try {
-	    Slide slide = slides.getSelectedSlide();
-	    if (slide == null) {
-		slides.setSelectedSlide(slides.getSlides().get(0));
-	    }
-	    slide = slides.getSelectedSlide();
-	    String imagePath = slide.getImagePath() + SLASH + slide.getImageFileName();
-	    File file = new File(imagePath);
-	    
-	    // GET AND SET THE IMAGE
-	    URL fileURL = file.toURI().toURL();
-	    Image slideImage = new Image(fileURL.toExternalForm());
-	    slideShowImageView.setImage(slideImage);
-
-	    // AND RESIZE IT
-	    double scaledHeight = DEFAULT_SLIDE_SHOW_HEIGHT;
-	    double perc = scaledHeight / slideImage.getHeight();
-	    double scaledWidth = slideImage.getWidth() * perc;
-	    slideShowImageView.setFitWidth(scaledWidth);
-	    slideShowImageView.setFitHeight(scaledHeight);
-	} catch (Exception e) {
-	    // CANNOT SHOW A SLIDE SHOW WITHOUT ANY IMAGES
-	    parentView.getErrorHandler().processError(LanguagePropertyType.ERROR_NO_SLIDESHOW_IMAGES);
-	}
-    }
-
-    private void reloadCaption() {
-	Slide slide = slides.getSelectedSlide();
-        captionLabel.setText(slides.getSelected().getText());
+        
+        String siteHTML = ("file:" + SlideShowDir +"index.html");
+        Stage webViewerStage = new Stage();
+        WebViewer webBrowser = new WebViewer(webViewerStage, siteHTML);
+        webViewerStage.show();
+        
+        
+        
+        
+       
     }
 }

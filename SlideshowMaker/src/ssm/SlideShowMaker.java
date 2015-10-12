@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import xml_utilities.InvalidXMLFileFormatException;
 import properties_manager.PropertiesManager;
@@ -20,9 +21,12 @@ import static ssm.StartupConstants.PATH_DATA;
 import static ssm.StartupConstants.PROPERTIES_SCHEMA_FILE_NAME;
 import static ssm.StartupConstants.MAIN;
 import static ssm.StartupConstants.English;
-import static ssm.StartupConstants.Lbox;
+import static ssm.StartupConstants.LBox;
 import static ssm.StartupConstants.Spanish;
-import static ssm.StartupConstants.bBox;
+import static ssm.StartupConstants.BBox;
+import static ssm.StartupConstants.CENTER;
+import static ssm.StartupConstants.CSS_TITLE;
+import static ssm.StartupConstants.STYLE_SHEET_UI;
 import ssm.error.ErrorHandler;
 import ssm.file.SlideShowFileManager;
 import ssm.view.SlideShowMakerView;
@@ -45,9 +49,10 @@ public class SlideShowMaker extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        // LOAD APP SETTINGS INTO THE GUI AND START IT UP
+        // LOAD APP SETTINGS INTO THE GUI AND START IT UI
         Stage temp = new Stage();
         final ComboBox comboBox = new ComboBox();
+        comboBox.getItems().clear();
         comboBox.getItems().addAll("English", "Spanish");
         Button Accept = new Button ("Accept");
         Accept.setOnAction(new EventHandler<ActionEvent>(){
@@ -68,19 +73,15 @@ public class SlideShowMaker extends Application {
                 }
                 }
             });
-        
-        HBox buttonBox = new HBox();
-        buttonBox.getChildren().addAll(Accept);
-       
+  
         Pane pane = new Pane();
         Label lang = new Label("Choose a Language");
-        lang.getStyleClass().add(Lbox);
-        pane.getChildren().add(lang);
-        BorderPane mainPane = new BorderPane();
-        mainPane.setTop(pane);
-        mainPane.setLeft(comboBox);
-        mainPane.setBottom(buttonBox);
-        Scene scene = new Scene(mainPane, 250, 100);
+        lang.getStyleClass().add(CSS_TITLE);
+        VBox mainPane = new VBox();
+        mainPane.getStyleClass().add(CENTER);
+        mainPane.getChildren().addAll(lang, comboBox, Accept);
+        Scene scene = new Scene(mainPane, 250, 200);
+        scene.getStylesheets().add(STYLE_SHEET_UI);
         temp.setTitle("Language Selector");
         temp.setScene(scene);
         temp.showAndWait();

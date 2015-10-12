@@ -215,6 +215,7 @@ public class SlideShowMakerView {
 	});
 	saveSlideShowButton.setOnAction(e -> {
 	    fileController.handleSaveSlideShowRequest();
+            
 	});
 	exitButton.setOnAction(e -> {
 	    fileController.handleExitRequest();

@@ -58,11 +58,17 @@
   -fx-background-color: rgb(255, 255, 60);
 }
 
-.bBox{
+.BBox{
       -fx-background-color: rgb(255, 255, 60);
-      -fx-alignment: CENTER;
 }
-.Lbox{
+.LBox{
       -fx-background-color: rgb(255, 255, 60);
       -fx-alignment:CENTER;
+}
+.CENTER{
+     -fx-background-color: rgb(255, 255, 60);
+    -fx-fill-width: true;
+    -fx-spacing: 30;
+    -fx-alignment:CENTER;
+    
 }

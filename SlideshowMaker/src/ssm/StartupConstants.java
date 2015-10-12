@@ -46,14 +46,15 @@ public class StartupConstants {
     public static String    MAIN = "Main";
     public static String    CSS_TEXT = "TextField";
     public static String    CSS_TITLE = "TitleField";
+    public static String    CENTER = "CENTER";
     public static String    CSS_CLASS_SLIDE_SHOW_EDIT_HBOX = "slide_show_edit_hbox";
     public static String    CSS_CLASS_VERTICAL_TOOLBAR_BUTTON = "vertical_toolbar_button";
     public static String    CSS_CLASS_HORIZONTAL_TOOLBAR_BUTTON = "horizontal_toolbar_button";
     public static String    CSS_CLASS_SLIDE_SHOW_EDIT_VBOX = "slide_show_edit_vbox";
     public static String    CSS_CLASS_SLIDE_EDIT_VIEW = "slide_edit_view";
     public static String     Selected_SEV ="SEV_selected";
-    public static String    bBox = "bBox";
-    public static String    Lbox = "Lbox";
+    public static String    BBox = "BBox";
+    public static String    LBox = "LBox";
     
     // UI LABELS
     public static String    LABEL_SLIDE_SHOW_TITLE = "slide_show_title";
