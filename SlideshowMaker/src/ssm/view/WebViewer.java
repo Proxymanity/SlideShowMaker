@@ -13,11 +13,6 @@ import javafx.stage.Stage;
 *   Creates and sets the WebView
 */
 public class WebViewer {
-    Stage Stage;
-    WebView View;
-    WebEngine ViewerEngine;
-    BorderPane ViewerPane;
-    Scene ViewerScene;
     
 /**
  * 
@@ -25,21 +20,21 @@ public class WebViewer {
  * @param HTMLDirectory The Directory of the HTML document
  */
     public WebViewer(Stage Stage, String HTMLDirectory) {
-        Stage = Stage;
-        View = new WebView();
-        ViewerEngine = View.getEngine();
+        Stage stage = Stage;
+       WebView View = new WebView();
+       WebEngine ViewerEngine = View.getEngine();
         ViewerEngine.load(HTMLDirectory);
      //Engine.setUserStyleSheetLocation("./index/public_html/slideshow_style.css");
-        ViewerPane = new BorderPane();
-        ViewerPane.setCenter(View);
-        ViewerScene = new Scene(ViewerPane);
+       BorderPane ViewerPane = new BorderPane();
+       ViewerPane.setCenter(View);
+        Scene ViewerScene = new Scene(ViewerPane);
         Stage.setScene(ViewerScene);
         Screen screen = Screen.getPrimary();
         Rectangle2D bounds = screen.getVisualBounds();
-        Stage.setX(bounds.getMinX());
-        Stage.setY(bounds.getMinY());
-        Stage.setWidth(bounds.getWidth());
-        Stage.setHeight(bounds.getHeight());
+        stage.setX(bounds.getMinX());
+        stage.setY(bounds.getMinY());
+        stage.setWidth(bounds.getWidth());
+        stage.setHeight(bounds.getHeight());
     }
 }
 

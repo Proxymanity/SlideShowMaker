@@ -74,7 +74,6 @@ public class SlideShowViewer extends Stage {
     String slideShowTitle;
     String SlideShowDir;
     String iconDir;
-    String s;
     /**
      * This constructor just initializes the parent and slides references, note
      * that it does not arrange the UI or start the slide show view window.
@@ -284,9 +283,7 @@ public class SlideShowViewer extends Stage {
             } 
         }
         //HTML file
-        if(b){
            File index = new File(SlideShowDir + "/index.html");
-           String s = index.getAbsolutePath();
             try {
                 index.createNewFile();
             } catch (IOException ex) {
@@ -303,7 +300,6 @@ public class SlideShowViewer extends Stage {
                 ErrorHandler e = parentView.getErrorHandler();
                 e.processError(LanguagePropertyType.ERROR_NOT_CREATED);
             } 
-        }
   
         // Writes the JSON file name to a javaScript file
             FileWriter fWriter = null;
@@ -320,11 +316,14 @@ public class SlideShowViewer extends Stage {
         }   
         
         
-        
-        String siteHTML = ("file:" +s);
+       // String s = indexURL.toString();
+        try {
+           String url = new String( index.toURI().toURL().toString());
         Stage webViewerStage = new Stage();
-        WebViewer webBrowser = new WebViewer(webViewerStage, siteHTML);
-        webViewerStage.show();
+        WebViewer webBrowser = new WebViewer(webViewerStage, url);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(SlideShowViewer.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         
         
