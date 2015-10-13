@@ -185,11 +185,14 @@ public class SlideShowModel {
     public void remove(){
         for (SlideEditView SEV : sev) {
 	    if(SEV.equals(selectedSEV)){
+                int i = sev.indexOf(SEV);
                 sev.remove(SEV);
-                break;
+                Slide temp = slides.get(i);
+                slides.remove(temp);
+                ui.reloadSlideShowPane(this);
                 }
 	}
-        ui.reloadSlideShowPane(this);
+ //       ui.reloadSlideShowPane(this);
     }
     
     public SlideShowMakerView getUI(){

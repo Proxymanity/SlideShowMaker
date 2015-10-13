@@ -74,6 +74,7 @@ public class SlideShowViewer extends Stage {
     String slideShowTitle;
     String SlideShowDir;
     String iconDir;
+    String s;
     /**
      * This constructor just initializes the parent and slides references, note
      * that it does not arrange the UI or start the slide show view window.
@@ -166,7 +167,7 @@ public class SlideShowViewer extends Stage {
                 ErrorHandler e = parentView.getErrorHandler();
                 e.processError(LanguagePropertyType.ERROR_NOT_CREATED);
             }
-            Path source =  Paths.get("images/slide_show_images/" + slide.getImageFileName());
+            Path source =  Paths.get(slide.getImagePath() + slide.getImageFileName());
             Path dest = Paths.get(imageDir);
             CopyOption A = StandardCopyOption.REPLACE_EXISTING;
             try {
@@ -285,6 +286,7 @@ public class SlideShowViewer extends Stage {
         //HTML file
         if(b){
            File index = new File(SlideShowDir + "/index.html");
+           String s = index.getAbsolutePath();
             try {
                 index.createNewFile();
             } catch (IOException ex) {
@@ -319,7 +321,7 @@ public class SlideShowViewer extends Stage {
         
         
         
-        String siteHTML = ("file:/sites/" + slideShowTitle +"/index.html");
+        String siteHTML = ("file:" +s);
         Stage webViewerStage = new Stage();
         WebViewer webBrowser = new WebViewer(webViewerStage, siteHTML);
         webViewerStage.show();

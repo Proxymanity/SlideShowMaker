@@ -33,9 +33,9 @@ button {
 }
 .PIC{
     alignment-baseline: central;
-    width: 700px;
-   height: auto;
-   max-height: 400px;
+   height: 425px;
+   width: auto;
+
 }
 .Caption{
     text-align: center;
